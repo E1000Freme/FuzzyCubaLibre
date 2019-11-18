@@ -1,0 +1,91 @@
+<htm>
+<head>
+<title>Boteco do Gallao</title>
+<link rel="stylesheet" type="text/css" href="reset.css">
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+
+<header>
+	<h1>Boteco</h1>
+</header>
+
+<content>
+	<div id="interface">
+		<div id="soda">
+			<div class="subtract" data-target="sodaAmount">
+				-
+			</div>
+			<div class="milis" id="sodaAmount">000</div>
+			<div class="add" data-target="sodaAmount">
+				+
+			</div>
+		</div>
+		<div id="rum">
+
+			<div class="subtract" data-target="rumAmount">
+				-
+			</div>
+			<div class="milis" id="rumAmount">000</div>
+			<div class="add" data-target="rumAmount">
+				+
+			</div>
+		</div>
+		<div id="ice">
+
+			<div class="subtract" data-target="iceAmount">
+				-
+			</div>
+			<div class="milis" id="iceAmount">000</div>
+			<div class="add" data-target="iceAmount">
+				+
+			</div>
+		</div>
+
+	</div>
+</content>
+
+<footer>
+	
+</footer>
+
+<script type="text/javascript">
+	addBtns = document.getElementsByClassName("add");
+	for(let i=0; i<addBtns.length; i++){
+		addBtns[i].addEventListener("mousedown", MouseDown);
+		addBtns[i].addEventListener("mouseup", MouseUp);
+	}
+	console.log(addBtns)
+	var longPress;
+	var isLongpressing;
+
+	function MouseDown(event){
+		var pressed = event.target.dataset.target
+		isLongpressing = false;
+		longPress = setTimeout(LeLongPress, 1000, pressed)
+		console.log(pressed);
+	}
+	function MouseUp(event){
+		var target = event.target.dataset.target
+		if(!isLongpressing){
+			value =  parseInt(document.getElementById(target).innerHTML)
+			value++
+			document.getElementById(target).innerHTML = value.toString().padStart(3,"0")
+		}
+		clearTimeout(longPress)
+	}
+
+	function LeLongPress(target){
+		isLongpressing = true;
+		console.info(target)
+		value =  parseInt(document.getElementById(target).innerHTML)
+		value += 10;
+		document.getElementById(target).innerHTML = value.toString().padStart(3,"0")
+		longPress = setTimeout(LeLongPress, 200, target);
+	}
+
+
+</script>
+</body>
