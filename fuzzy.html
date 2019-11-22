@@ -3,7 +3,74 @@
 <title>Boteco do Gallao</title>
 <link rel="stylesheet" type="text/css" href="reset.css">
 <style type="text/css">
-	
+
+	body{
+		background-color: #5D466B
+	}
+
+	header, content, footer{
+		padding: 5px;
+		font-size: 20pt;
+		text-align: center;
+		color: white
+	}
+	table{color:white;}
+
+	content{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.option{
+		display: flex;
+
+	}
+
+	.btn, .milis{
+		display: flex;
+		width: 44px;
+		height: 44px;
+		background-color: orange;
+		align-items: center;
+		justify-content: center;
+		font-size: 20pt;
+		font-weight: 600;
+		flex-direction: column;
+		margin:0.5em;
+	}
+
+	.milis::after{
+		content: "0 to 100ml";
+		display: inline-block;
+		font-size:10pt;
+	}
+
+	.btn{
+		border-radius: 1.5em;
+	}
+
+	.milis{
+		border-radius:0.3em;
+		width: 2.5em;
+		height:2.5em;
+	}
+
+	select, button{
+		background-color: orange;
+		color: white;
+		height: 3em;
+	}
+
+	button{margin: 0 auto; width: 100%;}
+	table{margin: 0 auto; border-collapse: separate;}
+	th, td{
+		margin: 0.2em;
+		padding:0.4em;
+	}
+
+
 </style>
 </head>
 <body>
@@ -14,45 +81,151 @@
 
 <content>
 	<div id="interface">
-		<div id="soda">
-			<div class="subtract" data-target="sodaAmount">
+		Soda <br><select id="sodaKind"><option value=0>Coca-Cola</option><option value=1>Pepsi-Cola</option></select>
+		<div id="soda" class="option">
+			<div class="btn" data-target="sodaAmount" data-value="-1">
+				--
+			</div><div class="btn" data-target="sodaAmount" data-value="-0.01">
 				-
 			</div>
 			<div class="milis" id="sodaAmount">000</div>
-			<div class="add" data-target="sodaAmount">
+			<div class="btn" data-target="sodaAmount" data-value="0.01">
 				+
+			</div><div class="btn" data-target="sodaAmount" data-value="1">
+				++
 			</div>
 		</div>
-		<div id="rum">
 
-			<div class="subtract" data-target="rumAmount">
+			Rum
+		<div id="rum" class="option">
+			<div class="btn" data-target="rumAmount" data-value="-1">
+				--
+			</div><div class="btn" data-target="rumAmount" data-value="-0.1">
 				-
 			</div>
 			<div class="milis" id="rumAmount">000</div>
-			<div class="add" data-target="rumAmount">
+			<div class="btn" data-target="rumAmount" data-value="0.01">
 				+
+			</div><div class="btn" data-target="rumAmount" data-value="1">
+				++
 			</div>
 		</div>
-		<div id="ice">
 
-			<div class="subtract" data-target="iceAmount">
+			Ice
+		<div id="ice" class="option">
+			<div class="btn" data-target="iceAmount" data-value="-1">
+				--
+			</div><div class="btn" data-target="iceAmount" data-value="-0.01">
 				-
 			</div>
 			<div class="milis" id="iceAmount">000</div>
-			<div class="add" data-target="iceAmount">
+			<div class="btn" data-target="iceAmount" data-value="0.01">
 				+
+			</div><div class="btn" data-target="iceAmount" data-value="1">
+				++
 			</div>
+		</div>
+		<div id="calculate" class="option">
+			<button id=btnCalc>Calcular</button>
 		</div>
 
 	</div>
 </content>
 
 <footer>
-	
+	<span id="wrongAlert"></span>
+	<hr>
+	<table>
+		<thead>
+			<tr>
+				<th>Taste</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="finalTaste">--</td>
+				<td id="finalPrice">--</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+
+	Fuzzy Calculations
+	<table>
+		<thead>
+			<tr>
+				<th colspan=3>Coke</th>
+				<th colspan=3>Pepsi</th>
+				<th colspan=3>Rum</th>
+				<th>Ice</th>
+			</tr>
+			<tr>
+				<th>Strong</th>
+				<th>Soft</th>
+				<th>Weak</th>
+				<th>Strong</th>
+				<th>Soft</th>
+				<th>Weak</th>
+				<th>Strong</th>
+				<th>Soft</th>
+				<th>Weak</th>
+				<th>--</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="strongCoke">--</td>
+				<td id="softCoke">--</td>
+				<td id="weakCoke">--</td>
+				<td id="strongPepsi">--</td>
+				<td id="softPepsi">--</td>
+				<td id="weakPepsi">--</td>
+				<td id="strongRum">--</td>
+				<td id="softRum">--</td>
+				<td id="weakRum">--</td>
+				<td id="icePert">--</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+
+	Tastes
+	<table>
+		<thead>
+			<tr>
+				<th colspan=3>Coke</th>
+				<th colspan=3>Pepsi</th>
+			</tr>
+			<tr>
+				<th>Strong</th>
+				<th>Soft</th>
+				<th>Weak</th>
+				<th>Strong</th>
+				<th>Soft</th>
+				<th>Weak</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="strongCokeTaste">--</td>
+				<td id="softCokeTaste">--</td>
+				<td id="weakCokeTaste">--</td>
+				<td id="strongPepsiTaste">--</td>
+				<td id="softPepsiTaste">--</td>
+				<td id="weakPepsiTaste">--</td>
+			</tr>
+		</tbody>
+	</table>
+
 </footer>
 
 <script type="text/javascript">
-	addBtns = document.getElementsByClassName("add");
+	const COKE = 0;
+	const PEPSI = 1;
+
+	document.getElementById("btnCalc").addEventListener("click", ComputeFuzzy)
+	addBtns = document.getElementsByClassName("btn");
 	for(let i=0; i<addBtns.length; i++){
 		addBtns[i].addEventListener("mousedown", MouseDown);
 		addBtns[i].addEventListener("mouseup", MouseUp);
@@ -62,30 +235,241 @@
 	var isLongpressing;
 
 	function MouseDown(event){
-		var pressed = event.target.dataset.target
+		var pressed = event.target
 		isLongpressing = false;
 		longPress = setTimeout(LeLongPress, 1000, pressed)
 		console.log(pressed);
 	}
 	function MouseUp(event){
-		var target = event.target.dataset.target
+		var btn = event.target
+		var targetName = btn.dataset.target
+		console.log(btn.dataset.value)
 		if(!isLongpressing){
-			value =  parseInt(document.getElementById(target).innerHTML)
-			value++
-			document.getElementById(target).innerHTML = value.toString().padStart(3,"0")
+			value =  parseFloat(document.getElementById(targetName).innerHTML)
+			value += parseFloat(btn.dataset.value)
+			document.getElementById(targetName).innerHTML = value.toFixed(2).padStart(3,"0")
 		}
-		clearTimeout(longPress)
+		clearTimeout(longPress);
 	}
 
-	function LeLongPress(target){
+	function LeLongPress(btn){
 		isLongpressing = true;
-		console.info(target)
-		value =  parseInt(document.getElementById(target).innerHTML)
-		value += 10;
-		document.getElementById(target).innerHTML = value.toString().padStart(3,"0")
-		longPress = setTimeout(LeLongPress, 200, target);
+		console.info(btn);
+		var targetName = btn.dataset.target;
+		value =  parseFloat(document.getElementById(targetName).innerHTML);
+		value += parseFloat(btn.dataset.value) * 10;
+		document.getElementById(targetName).innerHTML = value.toFixed(2).padStart(3,"0")
+		longPress = setTimeout(LeLongPress, 200, btn);
 	}
 
+	function ComputeFuzzy(){
+		document.getElementById("wrongAlert").innerHTML = "";
+		sodaKind = parseInt(document.getElementById("sodaKind").value);
+		sodaMilis = parseFloat(document.getElementById("sodaAmount").innerHTML);
+		rumMilis = parseFloat(document.getElementById("rumAmount").innerHTML);
+		iceMilis = parseFloat(document.getElementById("iceAmount").innerHTML);
+		cokeMilis = sodaKind == COKE ? sodaMilis : 0;
+		pepsiMilis = sodaKind == PEPSI ? sodaMilis : 0;
+
+		console.log(sodaMilis)
+		console.log(cokeMilis)
+		console.log(pepsiMilis)
+
+		document.getElementById("strongCoke").innerHTML = StrongCoke(cokeMilis).toFixed(2)
+		document.getElementById("softCoke").innerHTML = SoftCoke(cokeMilis).toFixed(2)
+		document.getElementById("weakCoke").innerHTML = WeakCoke(cokeMilis).toFixed(2)
+		document.getElementById("strongPepsi").innerHTML = StrongPepsi(pepsiMilis).toFixed(2)
+		document.getElementById("softPepsi").innerHTML = SoftPepsi(pepsiMilis).toFixed(2)
+		document.getElementById("weakPepsi").innerHTML = WeakPepsi(pepsiMilis).toFixed(2)
+		document.getElementById("strongRum").innerHTML = StrongRum(rumMilis).toFixed(2)
+		document.getElementById("softRum").innerHTML = SoftRum(rumMilis).toFixed(2)
+		document.getElementById("weakRum").innerHTML = WeakRum(rumMilis).toFixed(2)
+		document.getElementById("icePert").innerHTML = IcePertinece(iceMilis).toFixed(2)
+
+		document.getElementById("strongCokeTaste").innerHTML = StrongCokeTaste(cokeMilis, rumMilis, iceMilis).toFixed(2);
+		document.getElementById("softCokeTaste").innerHTML = SoftCokeTaste(cokeMilis, rumMilis, iceMilis).toFixed(2);
+		document.getElementById("weakCokeTaste").innerHTML = WeakCokeTaste(cokeMilis, rumMilis, iceMilis).toFixed(2);
+
+		document.getElementById("strongPepsiTaste").innerHTML = StrongPepsiTaste(pepsiMilis, rumMilis, iceMilis).toFixed(2);
+		document.getElementById("softPepsiTaste").innerHTML = SoftPepsiTaste(pepsiMilis, rumMilis, iceMilis).toFixed(2);
+		document.getElementById("weakPepsiTaste").innerHTML = WeakPepsiTaste(pepsiMilis, rumMilis, iceMilis).toFixed(2);
+
+		GetFinalTaste(sodaKind, sodaMilis, rumMilis, iceMilis)
+	}
+
+
+	function StrongCoke(milis){
+		if(milis < 50) return 0;
+		else if(milis >= 50 && milis < 52) return 1;
+		else if(milis >= 52 && milis < 54) return DecrescentLinear(52, 54, milis);
+		else return 0;
+	}
+
+	function SoftCoke(milis){
+		if(milis < 52) return 0;
+		else if(milis >= 52 && milis < 54) return CrescentLinear(52,54, milis);
+		else if(milis >= 54 && milis < 56) return 1;
+		else if(milis >= 56 && milis < 58) return DecrescentLinear(56, 58, milis);
+		else return 0;
+	}
+
+	function WeakCoke(milis){
+		if(milis < 56) return 0;
+		else if(milis >= 56 && milis < 58) return CrescentLinear(56, 58, milis);
+		else if(milis >= 58 && milis <= 60) return 1;
+		else return 0;
+	}
+
+	function StrongPepsi(milis){
+		if(milis < 60) return 0;
+		else if(milis >= 60 && milis < 62) return 1;
+		else if(milis >= 62 && milis < 64) return DecrescentLinear(62, 64, milis);
+		else return 0;
+
+	}
+
+	function SoftPepsi(milis){
+		if(milis < 62) return 0;
+		else if(milis >= 62 && milis < 64) return CrescentLinear(62, 64, milis);
+		else if(milis >= 64 && milis < 66) return 1;
+		else if(milis >= 66 && milis < 68) return DecrescentLinear(66, 68, milis);
+		else return 0;
+
+	}
+
+	function WeakPepsi(milis){
+		if(milis < 66) return 0;
+		else if(milis >= 66 && milis < 68) return CrescentLinear(66, 68, milis);
+		else if(milis >=68 && milis <= 70) return 1;
+		else return 0;
+
+	}
+
+	function StrongRum(milis){
+		if(milis < 23) return 0;
+		else if(milis >= 23 && milis < 28) return CrescentLinear(23, 28, milis);
+		else if(milis >= 28 && milis <= 30 )return 1;
+		else return 0;
+	}
+
+	function SoftRum(milis){
+		if(milis < 15) return 0;
+		else if(milis >= 15 && milis < 20) return CrescentLinear(15, 20, milis);
+		else if(milis >= 20 && milis < 25) return 1;
+		else if(milis >= 25 && milis < 27) return DecrescentLinear(25, 27, milis);
+		else return 0;
+	}
+
+	function WeakRum(milis){
+		if(milis < 10) return 0;
+		else if(milis >=10 && milis < 15) return 1;
+		else if(milis >= 15 && milis < 20) return DecrescentLinear(15, 20, milis)
+			else return 0;
+	}
+
+	function IcePertinece(milis){
+		if (milis == 20) return 1;
+		return 0;
+	}
+
+	function StrongCokeTaste(soda, rum, ice){
+		return Math.max(Math.min(StrongCoke(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(StrongCoke(soda), StrongRum(rum), IcePertinece(ice)),
+		                Math.min(SoftCoke(soda), StrongRum(rum), IcePertinece(ice))
+		                );
+	}
+
+	function SoftCokeTaste(soda, rum, ice){
+		return Math.max(Math.min(StrongCoke(soda), WeakRum(rum), IcePertinece(ice)),
+		                Math.min(SoftCoke(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(WeakCoke(soda), SoftRum(rum), IcePertinece(ice))
+		                );
+	}
+
+	function WeakCokeTaste(soda, rum, ice){
+		return Math.max(Math.min(WeakCoke(soda), WeakRum(rum), IcePertinece(ice)),
+		                Math.min(WeakCoke(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(SoftCoke(soda), WeakRum(rum), IcePertinece(ice))
+		                );
+
+	}
+
+	function StrongPepsiTaste(soda, rum, ice){
+		return Math.max(Math.min(StrongPepsi(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(StrongPepsi(soda), StrongRum(rum), IcePertinece(ice)),
+		                Math.min(SoftPepsi(soda), StrongRum(rum), IcePertinece(ice))
+		                );
+	}
+
+	function SoftPepsiTaste(soda, rum, ice){
+		return Math.max(Math.min(StrongPepsi(soda), WeakRum(rum), IcePertinece(ice)),
+		                Math.min(SoftPepsi(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(WeakPepsi(soda), SoftRum(rum), IcePertinece(ice))
+		                );
+	}
+
+	function WeakPepsiTaste(soda, rum, ice){
+		return Math.max(Math.min(WeakCoke(soda), WeakRum(rum), IcePertinece(ice)),
+		                Math.min(WeakCoke(soda), SoftRum(rum), IcePertinece(ice)),
+		                Math.min(SoftCoke(soda), WeakRum(rum), IcePertinece(ice))
+		                )
+	}
+
+	function GetFinalTaste(sodaKind, soda, rum, ice){
+		var tasteNames = ["Not Cuba", "Strong", "Soft", "Weak"];
+		var prices = ["--", "R$25,00", "R$20,00", "R$15,00"];
+		var tastes;
+		if(sodaKind == COKE){
+			tastes = [0, StrongCokeTaste(soda, rum, ice),
+					 SoftCokeTaste(soda, rum, ice),
+					 WeakCokeTaste(soda, rum, ice)]
+		}
+		else if(sodaKind == PEPSI){
+			tastes = [0, StrongPepsiTaste(soda, rum, ice),
+					 SoftPepsiTaste(soda, rum, ice),
+					 WeakPepsiTaste(soda, rum, ice)]
+		}
+
+		var index = tastes.indexOf(Math.max(...tastes));
+
+		document.getElementById("finalTaste").innerHTML = tasteNames[index];
+		document.getElementById("finalPrice").innerHTML = prices[index];
+
+		if(index == 0){
+			DisplayWrong(sodaKind, soda, rum, ice)
+		}
+
+	}
+
+	function DisplayWrong(sodaKind, soda, rum, ice){
+		output = "";
+
+		if(IcePertinece(ice) == 0) output += "Wrong quantity os missing ice<br>";
+		if(WeakRum(rum) == 0 &&
+		   SoftRum(rum) == 0 &&
+		   StrongRum(rum) == 0) output += "Wrong quantity or missing rum<br>"
+
+		if(sodaKind == COKE &&
+		   WeakCoke(soda) == 0 &&
+		   SoftCoke(soda) == 0 &&
+		   StrongCoke(soda) == 0) output += "Wrong quantity or missing Coca-cola<br>";
+
+		if(sodaKind == PEPSI &&
+		   WeakPepsi(soda) == 0 &&
+		   SoftPepsi(soda) == 0 &&
+		   StrongPepsi(soda) == 0) output += "Wrong quantity or missing Pepsi-cola<br>";
+
+		document.getElementById("wrongAlert").innerHTML = output;
+
+	}
+
+	function DecrescentLinear(start, end, x){
+		return (end - x)/(end - start)
+	}
+
+	function CrescentLinear(start, end, x){
+		return (x - start)/(end - start)
+	}
 
 </script>
 </body>
